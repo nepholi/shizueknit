@@ -1,0 +1,17 @@
+{{define "content"}}
+<h2>商品列表</h2>
+<div class="product-grid">
+  {{range .Products}}
+  <div class="product-item">
+    <img
+      src="/static/pic/{{.ID}}.jpg"
+      alt="{{.Name}}"
+      onerror="this.src='/static/pic/placeholder.jpg'"
+    />
+    <h3>{{.Name}}</h3>
+    <p>價格: NT${{.Price}}</p>
+    <a href="/product?id={{.ID}}">查看詳情</a>
+  </div>
+  {{end}}
+</div>
+{{end}}

@@ -1,0 +1,31 @@
+{{define "content"}}
+<div class="product-detail">
+  <h2>{{.Product.Name}}</h2>
+  <img
+    src="/static/images/products/{{.Product.ID}}.jpg"
+    alt="{{.Product.Name}}"
+    onerror="this.src='/static/images/placeholder.jpg'"
+  />
+  <p>價格: NT${{.Product.Price}}</p>
+  <p>庫存: {{.Product.Stock}}</p>
+  <p>類別: {{.Product.Category}}</p>
+  <p>描述: {{.Product.Description}}</p>
+  {{if .LoggedIn}}
+  <form action="/add-to-cart" method="post">
+    <input type="hidden" name="product_id" value="{{.Product.ID}}" />
+    <label for="quantity">數量:</label>
+    <input
+      type="number"
+      id="quantity"
+      name="quantity"
+      value="1"
+      min="1"
+      max="{{.Product.Stock}}"
+    />
+    <button type="submit">加入購物車</button>
+  </form>
+  {{else}}
+  <p>請<a href="/login">登入</a>以加入購物車</p>
+  {{end}}
+</div>
+{{end}}
